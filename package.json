@@ -1,0 +1,26 @@
+{
+  "name": "news-explorer-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turtle-hobbit/news-explorer-api.git"
+  },
+  "author": "Sofya Bedareva <sonya-97.72@yandex.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/turtle-hobbit/news-explorer-api/issues"
+  },
+  "homepage": "https://github.com/turtle-hobbit/news-explorer-api#readme",
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.6"
+  }
+}
