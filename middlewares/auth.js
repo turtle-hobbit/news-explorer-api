@@ -3,7 +3,6 @@ const { errorUnauthorizedUser } = require('../constants/error-messages');
 
 const { JWT_SECRET = 'dev-secret' } = process.env;
 
-// eslint-disable-next-line consistent-return
 module.exports = (req, res, next) => {
   const token = req.cookies.jwt;
 
@@ -20,5 +19,5 @@ module.exports = (req, res, next) => {
   }
 
   req.user = payload;
-  next();
+  return next();
 };
