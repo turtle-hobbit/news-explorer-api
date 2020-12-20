@@ -1,4 +1,5 @@
-# news-explorer-api
+# news-explorer-api  
+## Удалённый сервер для дипломного проекта по поиску новостных статей, реализована авторизация
 ---
 ### Проект размещен на следующих адресах
   + http://api.news.students.nomoreparties.space/
