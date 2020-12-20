@@ -7,7 +7,7 @@
   + https://api.news.students.nomoreparties.space/
   + https://www.api.news.students.nomoreparties.space/
 
-<b>Публичный IP-адрес:</b> 84.201.180.147
+<b>Публичный IP-адрес:</b> 84.201.169.61  
 ---
 ### Использование проекта с целью разработки
 #### Установка
