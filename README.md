@@ -2,10 +2,10 @@
 ## Удалённый сервер для дипломного проекта по поиску новостных статей, реализована авторизация
 ---
 ### Проект размещен на следующих адресах
-  + http://api.news.students.nomoreparties.space/
-  + http://www.api.news.students.nomoreparties.space/
-  + https://api.news.students.nomoreparties.space/
-  + https://www.api.news.students.nomoreparties.space/
+  + http://api.search-news.students.nomoreparties.space/
+  + http://www.api.search-news.students.nomoreparties.space/
+  + https://api.search-news.students.nomoreparties.space/
+  + https://www.api.search-news.students.nomoreparties.space/
 
 <b>Публичный IP-адрес:</b> 84.201.169.61  
 ---
