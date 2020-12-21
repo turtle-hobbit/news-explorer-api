@@ -6,13 +6,12 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const router = require('./routes/index');
-const { createUser, login } = require('./controllers/users');
+const routerAuth = require('./routes/authorization');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const auth = require('./middlewares/auth');
 const mongoServer = require('./config/config');
 const errorHandler = require('./helpers/error-handler');
 const limiter = require('./helpers/rate-limiter');
-const { checkSignIn, checkSignUp } = require('./helpers/helpers');
 const { errorNotFoundResource } = require('./constants/error-messages');
 
 const app = express();
@@ -30,10 +29,9 @@ app.use(helmet());
 app.use(limiter);
 app.use(requestLogger);
 
-app.post('/signin', checkSignIn, login);
-app.post('/signup', checkSignUp, createUser);
+app.use(routerAuth);
 app.use(auth);
-app.use('/', router);
+app.use(router);
 
 app.use(errorLogger);
 app.use(errors());
