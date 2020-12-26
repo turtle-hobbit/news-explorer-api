@@ -6,7 +6,6 @@ const {
   errorNotFoundUser,
   errorIncorrectData,
   errorNoDataAvailable,
-  errorIncorrectPassword,
   errorEmailExists,
 } = require('../constants/error-messages');
 
@@ -18,29 +17,28 @@ function getUser(req, res, next) {
 }
 
 function createUser(req, res, next) {
-  const pattern = /^[A-Za-z0-9]{8,}$/;
   const { name } = req.body;
 
-  if (!pattern.test(req.body.password)) {
-    next(errorIncorrectPassword);
-  } else {
-    bcrypt.hash(req.body.password, 10)
-      .then((hash) => {
-        User.create({
-          name,
-          email: req.body.email,
-          password: hash,
-        })
-          .then((user) => res.send({ data: user }))
-          .catch((err) => {
-            if (err.name === 'ValidationError') {
-              next(errorIncorrectData);
-            } else if (err.code === 11000) {
-              next(errorEmailExists);
-            }
-          });
-      });
-  }
+  bcrypt.hash(req.body.password, 10)
+    .then((hash) => {
+      User.create({
+        name,
+        email: req.body.email,
+        password: hash,
+      })
+        .then((user) => res.send({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+        }))
+        .catch((err) => {
+          if (err.name === 'ValidationError') {
+            next(errorIncorrectData);
+          } else if (err.code === 11000) {
+            next(errorEmailExists);
+          }
+        });
+    });
 }
 
 function login(req, res, next) {

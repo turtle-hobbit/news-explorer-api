@@ -21,7 +21,17 @@ const deleteHandler = (promise, req, res, next) => {
       const userId = req.user._id;
 
       if (object.owner.equals(userId)) {
-        object.deleteOne().then(() => res.send({ data: object }));
+        object.deleteOne()
+          .then((article) => res.send({
+            _id: article._id,
+            keyword: article.keyword,
+            title: article.title,
+            text: article.text,
+            date: article.date,
+            source: article.source,
+            link: article.link,
+            image: article.image,
+          }));
       } else {
         throw errorUnavailableArticle;
       }

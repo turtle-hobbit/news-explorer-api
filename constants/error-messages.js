@@ -2,6 +2,7 @@ const NotFoundError = require('../errors/not-found-err');
 const BadRequestError = require('../errors/bad-request-err');
 const UnauthorizedError = require('../errors/unauthorized-err');
 const ForbiddenError = require('../errors/forbidden-err');
+const ConflictingRequest = require('../errors/conflicting-request-err');
 
 const errorMessages = {
   notFound: {
@@ -12,8 +13,6 @@ const errorMessages = {
   },
   badRequest: {
     incorrectData: 'Переданы некорректные данные',
-    incorrectPassword: 'Пароль должен быть не менее 8 символов и состоять из цифр или строчных, заглавных букв латинского алфавита без пробелов',
-    emailExists: 'Введенный email уже существует',
     invalidURL: 'Невалидный URL',
   },
   authorisationError: {
@@ -23,6 +22,9 @@ const errorMessages = {
   },
   forbiddenError: {
     unavailableArticle: 'Нельзя удалить чужую статью',
+  },
+  conflictingRequest: {
+    emailExists: 'Введенный email уже существует',
   },
   serverError: 'На сервере произошла ошибка',
 };
@@ -35,8 +37,6 @@ const errorNotFoundUser = new NotFoundError(errorMessages.notFound.user);
 
 // Ошибки 400
 const errorIncorrectData = new BadRequestError(errorMessages.badRequest.incorrectData);
-const errorIncorrectPassword = new BadRequestError(errorMessages.badRequest.incorrectPassword);
-const errorEmailExists = new BadRequestError(errorMessages.badRequest.emailExists);
 const errorInvalidURL = new BadRequestError(errorMessages.badRequest.invalidURL);
 
 // Ошибки 401
@@ -48,8 +48,9 @@ const errorUnauthorizedUser = new UnauthorizedError(
   errorMessages.authorisationError.unauthorizedUser,
 );
 
-// Ошибки 403 и 500
+// Ошибки 403, 409 и 500
 const errorUnavailableArticle = new ForbiddenError(errorMessages.forbiddenError.unavailableArticle);
+const errorEmailExists = new ConflictingRequest(errorMessages.conflictingRequest.emailExists);
 const errorServer = errorMessages.serverError;
 
 module.exports = {
@@ -58,7 +59,6 @@ module.exports = {
   errorIncorrectData,
   errorNotFoundUser,
   errorNoDataAvailable,
-  errorIncorrectPassword,
   errorEmailExists,
   errorInvalidURL,
   errorUnavailableArticle,
