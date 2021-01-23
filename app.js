@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
-const cors = require('cors');
+// const cors = require('cors');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const router = require('./routes/index');
@@ -22,18 +22,18 @@ mongoose.connect(MONGO_SERVER, {
   useFindAndModify: false,
 });
 
-app.use('*', cors({
-  origin: 'http://127.0.0.1:5500/',
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  preflightContinue: false,
-  optionsSuccessStatus: 200,
-  allowedHeaders: [
-    'Content-Type',
-    'origin',
-    'x-access-token',
-  ],
-  credentials: true,
-}));
+// app.use('*', cors({
+//   origin: 'http://127.0.0.1:5500/',
+//   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+//   preflightContinue: false,
+//   optionsSuccessStatus: 200,
+//   allowedHeaders: [
+//     'Content-Type',
+//     'origin',
+//     'x-access-token',
+//   ],
+//   credentials: true,
+// }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(helmet());
