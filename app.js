@@ -11,6 +11,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./helpers/error-handler');
 const limiter = require('./helpers/rate-limiter');
 const { errorNotFoundResource } = require('./constants/error-messages');
+const { corsOptions } = require('./constants/constants');
 
 const app = express();
 const { PORT = 3000 } = process.env;
@@ -21,31 +22,6 @@ mongoose.connect(MONGO_SERVER, {
   useCreateIndex: true,
   useFindAndModify: false,
 });
-
-const whiteList = [
-  'http://127.0.0.1:5500',
-  'https://turtle-hobbit.github.io/news-explorer-frontend',
-];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whiteList.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  preflightContinue: false,
-  optionsSuccessStatus: 200,
-  allowedHeaders: [
-    'Content-Type',
-    'origin',
-    'x-access-token',
-    'version',
-    'authorization',
-  ],
-};
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
