@@ -1,5 +1,6 @@
 const whiteList = [
   'http://127.0.0.1:5500',
+  'http://localhost:8080',
   'https://turtle-hobbit.github.io',
   'https://turtle-hobbit.github.io/news-explorer-frontend',
 ];
