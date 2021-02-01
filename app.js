@@ -9,7 +9,7 @@ const { errors } = require('celebrate');
 const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./helpers/error-handler');
-const limiter = require('./helpers/rate-limiter');
+// const limiter = require('./helpers/rate-limiter');
 const { errorNotFoundResource } = require('./constants/error-messages');
 const { corsOptions } = require('./constants/constants');
 
@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(helmet());
 app.use(requestLogger);
-app.use(limiter);
+// app.use(limiter);
 
 app.use(router);
 

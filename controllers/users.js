@@ -58,7 +58,7 @@ function login(req, res, next) {
             maxAge: 3600000 * 24 * 7,
             httpOnly: true,
             sameSite: false,
-            secure: false,
+            secure: true,
           });
 
         res.send({ data: token });
@@ -70,8 +70,15 @@ function login(req, res, next) {
   return next(errorNoDataAvailable);
 }
 
+function logout(req, res) {
+  res
+    .clearCookie(req.cookies.jwt)
+    .send({ message: 'Куки удалено' });
+}
+
 module.exports = {
   getUser,
   createUser,
   login,
+  logout,
 };

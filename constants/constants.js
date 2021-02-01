@@ -1,8 +1,10 @@
 const whiteList = [
-  'http://127.0.0.1:5500',
-  'http://localhost:8080',
-  'https://turtle-hobbit.github.io',
+  'https://www.search-news.students.nomoreparties.space',
+  'https://search-news.students.nomoreparties.space',
   'https://turtle-hobbit.github.io/news-explorer-frontend',
+  'https://turtle-hobbit.github.io',
+  'http://localhost:8080',
+  'http://localhost:8081',
 ];
 
 const corsOptions = {

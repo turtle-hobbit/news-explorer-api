@@ -1,6 +1,6 @@
 const routerAuth = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const { createUser, login } = require('../controllers/users');
+const { createUser, login, logout } = require('../controllers/users');
 
 routerAuth.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -22,5 +22,11 @@ routerAuth.post('/signup', celebrate({
     'Content-Type': 'application/json',
   }).unknown(true),
 }), createUser);
+
+routerAuth.get('/signout', celebrate({
+  headers: Joi.object().keys({
+    'Content-Type': 'application/json',
+  }).unknown(true),
+}), logout);
 
 module.exports = routerAuth;
