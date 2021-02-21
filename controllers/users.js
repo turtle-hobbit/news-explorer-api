@@ -72,8 +72,9 @@ function login(req, res, next) {
 
 function logout(req, res) {
   res
-    .clearCookie(req.cookies.jwt)
-    .send({ message: 'Куки удалено' });
+    .clearCookie('jwt')
+    .send({ message: 'Куки удалено' })
+    .end();
 }
 
 module.exports = {
